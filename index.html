@@ -1,320 +1,674 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Praful Project Portfolio</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <!-- Template css Files -->
-    <link rel="stylesheet" href="css/style.css" type="text/css">
-  <!-- <link rel="stylesheet" href="css/skins/pink.css" type="text/css"> -->
-</head>
-<body>
+  <head>
+    <title>Praful Project Portfolio</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+      :root {
+        --color-blue: #19a3f7;
+        --color-text: #504e70;
+        --color-title: #302e4d;
+        --color-grey: #e3e3e3;
+        --color-timeline: #fdf9ff;
+        --color-border: #d4d4e3;
+        --color-tags: #19a3f7;
+      }
 
+      body {
+        margin: 0;
+        line-height: 1.5;
+        font-size: 16px;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 400;
+        overflow: hidden;
+      }
 
+      * {
+        margin: 0;
+        padding: 0;
+        outline: none;
+        text-decoration: none;
+        box-sizing: border-box;
+      }
 
+      ::before,
+      ::after {
+        box-sizing: border-box;
+      }
+
+      input,
+      textarea,
+      select {
+        font-family: "Open Sans", sans-serif;
+      }
+
+      /*menu lateral*/
+      .section {
+        background-color: #f2f2fc;
+        min-height: 100vh;
+        display: block;
+        padding: 0 30px;
+        position: fixed;
+        left: 0px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 0;
+        /*Permitir a barra de rolagem*/
+        overflow: auto;
+        opacity: 1;
+        -webkit-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+      }
+
+      /*Transição das páginas*/
+      .section.back-section {
+        z-index: 1;
+      }
+
+      .section.active {
+        opacity: 1;
+        z-index: 2;
+        -webkit-animation: slideSection 1s ease;
+        animation: slideSection 1s ease;
+      }
+
+      @-webkit-keyframes slideSection {
+        0% {
+          -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+        }
+
+        100% {
+          -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+        }
+      }
+
+      @keyframes slideSection {
+        0% {
+          -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+        }
+
+        100% {
+          -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+        }
+      }
+
+      .section .container {
+        padding-top: 60px;
+        padding-bottom: 70px;
+      }
+
+      .section-title {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+
+      .section-title h2 {
+        font-size: 40px;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 800;
+        color: #302e4d;
+        margin: 0;
+        position: relative;
+        margin-bottom: 60px;
+      }
+
+      .section-title h2::before {
+        content: "";
+        height: 4px;
+        width: 60px;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: var(--color-tags);
+      }
+
+      .section-title h2::after {
+        content: "";
+        height: 4px;
+        width: 30px;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        margin-top: 8px;
+        background-color: var(--color-tags);
+      }
+
+      .linhas {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+        position: relative;
+      }
+
+      .padd-15 {
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+
+      /*configurações do meio da home*/
+      .container {
+        max-width: 1100px;
+        width: 100%;
+        margin: auto;
+      }
+
+      /*PORTFOLIO*/
+      .portfolio .portfolio-item {
+        -ms-flex: 0 0 33.33%;
+        flex: 0 0 33.33%;
+        max-width: 33.33%;
+        margin-bottom: 30px;
+        /*Para deixar todos os cards do mesmo comprimento*/
+        display: -ms-flexbox;
+        display: flex;
+        width: 100%;
+      }
+
+      .portfolio .portfolio-item-inner {
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid var(--color-border);
+        background-color: var(--color-timeline);
+      }
+
+      .portfolio .portfolio-item-inner .portfolio-img {
+        position: relative;
+      }
+
+      .portfolio .portfolio-item-inner:hover .portfolio-img {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+      }
+
+      .portfolio .portfolio-item-inner .portfolio-img img {
+        width: 100%;
+        display: block;
+        -webkit-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+      }
+
+      .portfolio .portfolio-item-inner .portfolio-info {
+        padding: 30px 15px;
+        background-color: var(--color-timeline);
+      }
+
+      .portfolio .portfolio-item-inner .portfolio-info .portfolio-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--color-title);
+        text-transform: capitalize;
+        margin-bottom: 10px;
+      }
+
+      .portfolio .portfolio-item-inner .portfolio-info .portfolio-text {
+        font-size: 16px;
+        line-height: 25px;
+        color: var(--color-text);
+        font-weight: 400;
+        margin-bottom: 15px;
+      }
+
+      .portfolio .portfolio-item-inner .portfolio-info .portfolio-tags {
+        font-size: 14px;
+        line-height: 25px;
+        color: var(--color-tags);
+        font-weight: 400;
+        text-transform: capitalize;
+      }
+
+      /*RESPONSIVIDADE*/
+      @media (max-width: 1199px) {
+        .section .container {
+          padding-top: 70px;
+        }
+
+        .lateral .mini-menu-button {
+          display: -ms-flexbox;
+          display: flex;
+          left: 30px;
+        }
+
+        .lateral .mini-menu-button.open {
+          left: 0px;
+        }
+
+        .lateral {
+          left: 0px;
+        }
+
+        .lateral.open {
+          left: 0px;
+        }
+
+        .section {
+          left: 0;
+        }
+
+        .section.open {
+          left: 270;
+        }
+
+        .home .intro img {
+          width: 45%;
+          display: inline-block;
+        }
+
+        .lateral .itens-menu li a {
+          font-size: 16px;
+          font-weight: 600;
+          line-height: 40px;
+        }
+      }
+
+      @media (max-width: 991px) {
+        .home .intro img {
+          width: 55%;
+          display: inline-block;
+        }
+
+        .service .service-item {
+          -ms-flex: 0 0 50%;
+          flex: 0 0 50%;
+          max-width: 50%;
+        }
+
+        .sobre .sobre-conteudo .educacao,
+        .sobre .sobre-conteudo .experiencia,
+        .sobre .sobre-conteudo .cursos {
+          -ms-flex: 0 0 50%;
+          flex: 0 0 50%;
+          max-width: 50%;
+        }
+
+        .portfolio .portfolio-item {
+          -ms-flex: 0 0 50%;
+          flex: 0 0 50%;
+          max-width: 50%;
+          margin-bottom: 30px;
+          /*Para deixar todos os cards do mesmo comprimento*/
+          display: -ms-flexbox;
+          display: flex;
+        }
+      }
+
+      @media (max-width: 767px) {
+
+        .contact .contact-form .col-6,
+        .service .service-item-inner,
+        .sobre .sobre-conteudo .educacao,
+        .sobre .sobre-conteudo .experiencia,
+        .sobre .sobre-conteudo .cursos,
+        .sobre .sobre-conteudo .skills {
+          -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+          max-width: 100%;
+        }
+
+        .service .service-item {
+          -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+          max-width: 100%;
+        }
+
+        .home .intro img {
+          width: 70%;
+          display: inline-block;
+        }
+
+        .portfolio .portfolio-item {
+          -ms-flex: 0 0 50%;
+          flex: 0 0 50%;
+          max-width: 50%;
+          margin-bottom: 30px;
+          /*Para deixar todos os cards do mesmo comprimento*/
+          display: -ms-flexbox;
+          display: flex;
+        }
+      }
+
+      @media (max-width: 650px) {
+        .portfolio .portfolio-item {
+          -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+          max-width: 100%;
+          margin-bottom: 30px;
+          /*Para deixar todos os cards do mesmo comprimento*/
+          display: -ms-flexbox;
+          display: flex;
+        }
+      }
+
+      @media (max-width: 550px) {
+        .contact .contact-info-item {
+          -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+          max-width: 100%;
+        }
+      }
+
+      @media (max-width: 410px) {
+        .home .intro h1 {
+          font-size: 25px;
+        }
+
+        .home .intro p {
+          font-size: 15px;
+          line-height: 20px;
+        }
+
+        .home .intro img {
+          width: 70%;
+          display: inline-block;
+        }
+
+        .home .intro .redes-sociais a {
+          height: 35px;
+          width: 35px;
+          line-height: 35px;
+          margin: 0 3px;
+        }
+      }
+
+      .platform-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+      }
+
+      .platform-button {
+        flex: 1;
+        text-align: center;
+        padding: 10px;
+        background: #19a3f7;
+        color: white;
+        text-decoration: none;
+        border-radius: 3px;
+        margin-right: 5px;
+      }
+
+      @media (max-width: 345px) {
+        .lateral .mini-menu-button.open {
+          left: 0px;
+        }
+      }
+    </style>
+  </head>
+  <body>
     <div class="main-content">
-          
-            <!--PORTFOLIO-->
-            <section class="portfolio section" id="portfolio">
-                <div class="container">
-                    <div class="linhas">
-                        <div class="section-title padd-15">
-                            <h2>Praful Korat Project's</h2>
-                        </div>
-                    </div>
-                    <div class="linhas">
-
-
- <!--Blog Item 1 -->
-                         <div class="portfolio-item padd-15">
-                            <div class="portfolio-item-inner sombra">
-                                <a href="https://play.google.com/store/apps/details?id=com.app.lookma" target="_blank">
-                                    <div class="portfolio-info">
-                                        <h4 class="portfolio-title">Look Ma: Social Network - Flutter (Android/Ios)</h4>
-                                        <p class="portfolio-text">(Under In Developement) Lookma social network is same app like instagram, Make profile and share post and grow your following and follower with hastag,like,comment. Single & Group Chat with friend and make audio video call. </p>
-                                        <p class="portfolio-tags">Dart, Kotlin, Swift, Chat, Audio/Video Call, Multi Language, InApp Store, Dnamic Linking, Firebase notification</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-
-                        <div class="portfolio-item padd-15">
-                            <div class="portfolio-item-inner sombra">
-                                <a href="https://play.google.com/store/apps/details?id=com.app.ketshop" target="_blank">
-                                    <div class="portfolio-info">
-                                        <h4 class="portfolio-title">Ketshop - Flutter (Android/Ios/Web)</h4>
-                                        <p class="portfolio-text">Ketshop is revolutionizing the way families shop. We are the only store that lets parents choose + kids buy. Ketshop helps parents create boundaries around money and the products that enter the family home. We empower children by giving them real financial responsibility!</p>
-                                        <p class="portfolio-tags">Website : https://app.ketshop.com </br> Dart, Kotlin, Swift, InApp Store, Firebase, InApp Payment</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-
-                         <div class="portfolio-item padd-15">
-                            <div class="portfolio-item-inner sombra">
-                                <a href="https://play.google.com/store/apps/details?id=com.app.fitsual" target="_blank">
-                                    <div class="portfolio-info">
-                                        <h4 class="portfolio-title">Fistual: Fitness Tracker</h4>
-                                        <p class="portfolio-text">Empowering every person to be aware, in charge and proud of their body changes. The power of photos combined with the accuracy of data to help you reach your goals. Regular photos overlaid with useful data gives you a more accurate view of direction and allows for immediate adjustments.</p>
-                                        <p class="portfolio-tags">Java, Kotlin, Google/Fb signin, Firestore</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                      <div class="portfolio-item padd-15">
-                            <div class="portfolio-item-inner sombra">
-                                <a href="https://play.google.com/store/apps/details?id=com.app.ecstasy" target="_blank">
-                                
-                                    <div class="portfolio-info">
-                                        <h4 class="portfolio-title">Ecstasy اكستاسي</h4>
-                                        <p class="portfolio-text">This official app contains online and audio reading of the book.Try to see life through the eyes of someone who has been surrounded by darkness from the beginning. Every day in the book revolves around the stages that we go through at least once in our lives. It is a series that the writer expresses through illustrations and art. It's for people who like to let their imagination run wild. Ecstasy will inspire people who normally don't read books, to start reading.</p>
-                                        <p class="portfolio-tags">Kotlin, Push notification, Firebase </p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="portfolio-item padd-15">
-                            <div class="portfolio-item-inner sombra">
-                                <a href="https://play.google.com/store/apps/details?id=com.ips.requester" target="_blank">
-                                    <div class="portfolio-info">
-                                        <h4 class="portfolio-title">IPS Security Service Requester</h4>
-                                        <p class="portfolio-text">The IPS app is a revolutionary tool that will simplify security services aligning the needs of our client with the perfect profile match of the security professionals. It allows security professionals and clients to existing in a single ecosystem. It is one of the first kinds of on-demand security service app.</p>
-                                        <p class="portfolio-tags">Kotlin, Google/Fb signin, Geofencing, Push notification, Chat</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-
-                        <div class="portfolio-item padd-15">
-                            <div class="portfolio-item-inner sombra">
-                                <a href="https://play.google.com/store/apps/details?id=com.ips.provider" target="_blank">
-                                    <div class="portfolio-info">
-                                        <h4 class="portfolio-title">IPS Security Service Provider</h4>
-                                        <p class="portfolio-text">The IPS app is a revolutionary tool that will simplify security services aligning the needs of our client With state of art technology in geofencing, in-app messaging, and e-commerce immersed in a central location, IPS is here with infinite solutions, experience, and professionalism.</p>
-                                        <p class="portfolio-tags">Kotlin, Google/Fb signin, Geofencing, Push notification, Chat</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="portfolio-item padd-15">
-                            <div class="portfolio-item-inner sombra">
-                                <a href="https://play.google.com/store/apps/details?id=com.awakenedmind.android" target="_blank">
-                                    <div class="portfolio-info">
-                                        <h4 class="portfolio-title">Awakened Mind: Mindfulness app</h4>
-                                        <p class="portfolio-text">As a professional with experience working with some of the most recognised corporate leaders in the fields of mindfulness and leadership, his insight and experience have been funnelled into the Awakened Mind app. Today, it’s designed to equip you with authentic, scientifically proven, and fully-guided resources no matter what stage of the mindfulness journey you’re in.</p>
-                                        <p class="portfolio-tags">Java, Kotlin, Firebase, Push notification, InApp purchase, Chat</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-
-                         <div class="portfolio-item padd-15">
-                            <div class="portfolio-item-inner sombra">
-                                <a href="https://play.google.com/store/apps/details?id=vi.homeworkout.noequipment.weightloss.fitnesscoach" target="_blank">
-                                    <div class="portfolio-info">
-                                        <h4 class="portfolio-title">Home Workout for Men & Women</h4>
-                                        <p class="portfolio-text">Six Pack 30 Day Challenge provides systematic 30 days workout routines with 3 levels, it’s suitable for both BEGINNER AND PRO, MEN AND WOMEN. We’ll guide you to burn belly fat and build six pack abs step by step, just like having a PERSONAL TRAINER in your pocket.</p>
-                                        <p class="portfolio-tags">Java, Kotlin, Firebase, Push notification</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                         <!--Blog Item 1 -->
-                         <div class="portfolio-item padd-15">
-                            <div class="portfolio-item-inner sombra">
-                                <a href="https://play.google.com/store/apps/details?id=com.ebizzapps.mystufforganizer" target="_blank">
-                                    <div class="portfolio-info">
-                                        <h4 class="portfolio-title">My Stuff Organizer: For Home Inventory Management</h4>
-                                        <p class="portfolio-text">This Stuff Management App, keep a track of your stuff with people whom you have Lend/Borrow stuff, hold the expenses & plan your budget accordingly!</p>
-                                        <p class="portfolio-tags">Java, Kotlin, Google Signin, Firebase,InApp purchase, InApp Ads, Onesignal notification</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                      
-  <div class="portfolio-item padd-15">
-                                <div class="portfolio-item-inner sombra">
-                                    <a href="https://play.google.com/store/apps/details?id=com.renlight.homefit" target="_blank">
-                                        
-                                        <div class="portfolio-info">
-                                            <h4 class="portfolio-title">HomeFit RL</h4>
-                                            <p class="portfolio-text">HomeFit RL helps homebuyers discover what you want in a house, and is designed to make things easy if you change your mind later.The app will take you through a series of assistants to help you with your decision-making. Find out what you want in your house and how important each priority is to you, stay focused and organized as you see properties with our integrated checklist, note-taking, and picture capabilities, and compare houses directly to each other!</p>
-                                            <p class="portfolio-tags">Java, Firebase, Pushnotification, Messaging</p>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                       <!--Blog Item 1 -->
-                         <div class="portfolio-item padd-15">
-                            <div class="portfolio-item-inner sombra">
-                                <a href="https://play.google.com/store/apps/details?id=com.writingstar.autotypingandtextexpansion" target="_blank">
-                                    <div class="portfolio-info">
-                                        <h4 class="portfolio-title">Writing Star: Text Expander & Auto-complete text</h4>
-                                        <p class="portfolio-text">Writing star gives you convenience of typing less but getting long phrases by planning abbreviations of your choice.Automatic expansion means, as soon as a keyword is typed, it will be replaced with its associated Text automatically. You can add the text of your choice to get replaced with short terms.</p>
-                                        <p class="portfolio-tags">Kotlin, Google Signin, Firebase,InApp purchase, InApp Ads, Onesignal notification</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                       <div class="portfolio-item padd-15">
-                            <div class="portfolio-item-inner sombra">
-                                <a href="https://play.google.com/store/apps/details?id=com.eastgate.seg" target="_blank">
-                                    <div class="portfolio-info">
-                                        <h4 class="portfolio-title">East Gate Mall</h4>
-                                        <p class="portfolio-text">At East Gate Mall there are many events and cool activities that you can do with your friends and family! Download the mobile app and stay up to date with all the happenings at the mall.
-Beside the shopping info, on the mobile app you will find the Smart Parking feature, which will help you locate your car in the mall parking lot. The feature will locate your car and will guide you to it.</p>
-                                        <p class="portfolio-tags">Java, Kotlin, Firebase</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                          <!--Blog Item 5 -->
-                          <div class="portfolio-item padd-15">
-                            <div class="portfolio-item-inner sombra">
-                                <a href="https://play.google.com/store/apps/details?id=com.timestamper.
-activitylogwithdatetimelocation" target="_blank">
-                                    
-                                    <div class="portfolio-info">
-                                        <h4 class="portfolio-title">Timestamper: Keep Activity Log with Time
-and Note</h4>
-                                        <p class="portfolio-text">Simple and easy activity log keeper is here to help you and
-solve your many problems.Keep a track of your day to day
-activities in a very easy way.Timestamp your Activities which
-can even help you in creating good habits.</p>
-                                        <p class="portfolio-tags">Java, InApp Ads, Location, SQlite, Onesignal Notification</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                         <div class="portfolio-item padd-15">
-                            <div class="portfolio-item-inner sombra">
-                                <a href="https://play.google.com/store/apps/details?id=com.app.landscapepro" target="_blank">
-                
-                                    <div class="portfolio-info">
-                                        <h4 class="portfolio-title">Landscape Pro - Landscapers and gardeners for hire</h4>
-                                        <p class="portfolio-text">Alllow Home users to schedule one-time or recurring landscaping service with local landscapers in the app. Our professional services include lawn care, backyard trees trimming, watering flowers and plants in the garden, yard waste removal and more.</p>
-                                        <p class="portfolio-tags">Java, Kotlin, Notification, Thirdpart Api</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-
-                      <div class="portfolio-item padd-15">
-                            <div class="portfolio-item-inner sombra">
-                                <a href="https://play.google.com/store/apps/details?id=com.newzera" target="_blank">
-                
-                                    <div class="portfolio-info">
-                                        <h4 class="portfolio-title">Newzera</h4>
-                                        <p class="portfolio-text">Newzera, where we redefine news consumption for the modern world. With a striking fusion of advanced AI technology and user-centric design, Newzera delivers a never-before-seen news experience.With our revolutionary NewzGPT technology, we provide 100% AI-generated, fact-checked, and bias-free news, served up in real-time. Short, catchy summaries and world-first AI-generated news videos ensure an engaging, immersive experience.</p>
-                                        <p class="portfolio-tags">Java, Notification, Thirdpart Api</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                      
-                         <!--Blog Item 2 -->
-                         <div class="portfolio-item padd-15">
-                            <div class="portfolio-item-inner sombra">
-                                <a href="https://play.google.com/store/apps/details?id=com.gpsmapcameralite.geotagphotolocation" target="_blank">
-                                    <div class="portfolio-info">
-                                        <h4 class="portfolio-title">GPS map camera Lite for photo location</h4>
-                                        <p class="portfolio-text">Address, Latitude, Longitude to Altitude And Date Time, You can have every information as a template on your clicked photos as Auto stamp, once you click it from a GPS map camera lite App.</p>
-                                        <p class="portfolio-tags">Java, Kotlin, Google Location, Firebase,InApp purchase, InApp Ads, Onesignal notification</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <!--Blog Item 6-->
-                        <div class="portfolio-item padd-15">
-                            <div class="portfolio-item-inner sombra">
-                                <a href="https://play.google.com/store/apps/details?id=com.ebizzapps.te
-xttransferbetweenmobiledesktop" target="_blank">
-                                   
-                                    <div class="portfolio-info">
-                                        <h4 class="portfolio-title">TexFer: Text Transfer Between Mobile
-Desktop</h4>
-                                        <p class="portfolio-text">TexFer is an all-in-one solution free text transfer app to share
-any important information and text messages, URLs, or any
-other information that you encounter in a mobile phone or
-desktop.</p>
-                                            <p class="portfolio-tags">Kotlin, Html, Css, Desktop Support, Firebase, Notification</p>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                       
-                         <!--Blog Item 4 -->
-                         <div class="portfolio-item padd-15">
-                            <div class="portfolio-item-inner sombra">
-                                <a href="https://play.google.com/store/apps/details?id=com.ebizzinfotech.
-whatsappCE" target="_blank">
-                                    
-                                    <div class="portfolio-info">
-                                        <h4 class="portfolio-title">Export Contacts For WhatsApp</h4>
-                                        <p class="portfolio-text">Export all the Contacts who are using WhatsApp from any
-number of Bulk Contacts list (1lac, 2lac, etc..) with Export
-Contacts for WhatsApp application. This ultimate tool is
-developed to help businesses with Bulk SMS Advertising and
-promotion on WhatsApp.</p>
-                                        <p class="portfolio-tags">Java, Html, Css, Desktop Support, Make CSV,PDF</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <!--Blog Item 2 -->
-                         <div class="portfolio-item padd-15">
-                            <div class="portfolio-item-inner sombra">
-                                <a href="https://play.google.com/store/apps/details?id=ai.virtualdate.randomvideocall.singlegirl.xgfcall" target="_blank">
-                                    <div class="portfolio-info">
-                                        <h4 class="portfolio-title">SimplyMeet - Live Video Chat</h4>
-                                        <p class="portfolio-text">SimplyMeet is your go-to live video chat app, connecting you with friendly, like-minded people from around the world via spontaneous video calls. Here at SimplyMeet, we're all about making meaningful connections with strangers and fostering a delightful experience.</p>
-                                        <p class="portfolio-tags">Java, Google Location, Firebase, InApp Ads, Agora Video Call</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                            <!--Blog Item 7-->
-                            <div class="portfolio-item padd-15">
-                                <div class="portfolio-item-inner sombra">
-                                    <a href="https://play.google.com/store/apps/details?id=com.photolocation
-stamp.gpsmapgeotagongalleryphotos" target="_blank">
-                                       
-                                        <div class="portfolio-info">
-                                            <h4 class="portfolio-title">GPS Map Stamp: Add a Geotag on Gallery
-Photos</h4>
-                                            <p class="portfolio-text">Easily add your location data on the gallery photos along with
-this app. This Geotagging app helps adding custom stamps
-including latitude, longitude, datetime, address stamp, local
-temperature, and much more!</p>
-                                            <p class="portfolio-tags">Java, Kotlin, Geo Location, Firebase, Notification, InApp Ads</p>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                          
-                            
-                      
-                         
-                    </div>
+      <!--PORTFOLIO-->
+      <section class="portfolio section" id="portfolio">
+        <div class="container">
+          <div class="linhas">
+            <div class="section-title padd-15">
+              <h2>Praful Korat Project's</h2>
+            </div>
+          </div>
+          <div class="linhas">
+            <!--Blog Item 1 -->
+            <div class="portfolio-item padd-15">
+              <div class="portfolio-item-inner sombra">
+                <div class="portfolio-info">
+                  <h4 class="portfolio-title">Look Ma: Social Network - Flutter</h4>
+                  <p class="portfolio-text">Lead the development of 'Look Ma Social Network,' a dynamic mobile application similar to Instagram, featuring profile creation, post sharing, and follower growth through hashtag utilization, likes, and comments. Implemented robust chat functionalities for both single and group conversations, integrating audio and video calling capabilities for seamless communication.</p>
+                  <p class="portfolio-tags">Dart, Kotlin, Swift, Chat, Audio/Video Call, Multi Language, InApp Store, Dnamic Linking, Firebase notification</p>
+                  <div class="platform-buttons">
+                    <a href="https://play.google.com/store/apps/details?id=com.app.lookma" class="platform-button" target="_blank">Android</a>
+                    <a href="https://apps.apple.com/pk/app/look-ma-socialnetwork/id1589430361" class="platform-button" target="_blank">IOS</a>
+                  </div>
                 </div>
-            </section>
-            <!-- FIM - PORTFOLIO-->
-
-           
+              </div>
+            </div>
+            <div class="portfolio-item padd-15">
+              <div class="portfolio-item-inner sombra">
+                <a href="https://play.google.com/store/apps/details?id=com.app.ketshop" target="_blank">
+                  <div class="portfolio-info">
+                    <h4 class="portfolio-title">Ketshop - Flutter</h4>
+                    <p class="portfolio-text">Innovated shopping experience at Ketshop, pioneering a unique model where parents curate selections while empowering kids to make purchases. Implemented effective financial boundaries for families, fostering responsible spending habits and enhancing parental oversight. Contributed to a transformative retail environment that prioritizes both convenience and financial education.</p>
+                    <p class="portfolio-tags">Dart, Kotlin, Swift, InApp Store, Firebase, InApp Payment </p>
+                    <div class="platform-buttons">
+                      <a href="https://play.google.com/store/apps/details?id=com.app.ketshop" class="platform-button" target="_blank">Android</a>
+                      <a href="https://apps.apple.com/in/app/ketshop/id1574945590" class="platform-button" target="_blank">IOS</a>
+                      <a href="https://app.ketshop.com" class="platform-button" target="_blank">Web</a>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="portfolio-item padd-15">
+              <div class="portfolio-item-inner sombra">
+                <div class="portfolio-info">
+                  <h4 class="portfolio-title">Fistual: Fitness Tracker</h4>
+                  <p class="portfolio-text">Lead the development of a transformative fitness tracking application aimed at empowering users to embrace and manage their body changes with confidence. Integrated cutting-edge photo analysis algorithms with comprehensive data tracking functionalities, enabling users to visualize progress accurately and make informed decisions toward their fitness goals. <br>
+                    <br>
+                  </p>
+                  <p class="portfolio-tags">Java, Kotlin, Google/Fb signin, Firestore, SQlite, In-App Ads</p>
+                  <div class="platform-buttons">
+                    <a href="https://www.fitsual.com" class="platform-button" target="_blank">Android (Under Development)</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="portfolio-item padd-15">
+              <div class="portfolio-item-inner sombra">
+                <div class="portfolio-info">
+                  <h4 class="portfolio-title">Ecstasy</h4>
+                  <p class="portfolio-text">Developed the official app featuring online and audio reading functionalities for a captivating book series, inviting users to explore life through the perspective of darkness. With rich illustrations and art, the app navigates through universal life stages, enticing even non-readers to embark on the literary journey. Known for sparking imagination and inspiring readers, the app 'Ecstasy' transcends traditional reading experiences, encouraging a broader audience to engage with literature.</p>
+                  <p class="portfolio-tags">Kotlin, Rest API, Push notification, Firebase </p>
+                  <div class="platform-buttons">
+                    <a href="https://play.google.com/store/apps/details?id=com.app.ecstasy" class="platform-button" target="_blank">Android</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="portfolio-item padd-15">
+              <div class="portfolio-item-inner sombra">
+                <div class="portfolio-info">
+                  <h4 class="portfolio-title">IPS Security Service Requester & Provider (Android)</h4>
+                  <p class="portfolio-text">Development of the IPS app, a groundbreaking tool revolutionizing security services by seamlessly matching client needs with the ideal security professionals. This innovative platform brings security professionals and clients together within a unified ecosystem, streamlining the hiring process. Spearheaded the creation of one of the first on-demand security service apps, enhancing efficiency and effectiveness in the security industry.</p>
+                  <p class="portfolio-tags">Kotlin, Google/Fb signin, Geofencing, Push notification, Chat</p>
+                  <div class="platform-buttons">
+                    <a href="https://play.google.com/store/apps/details?id=com.ips.requester" class="platform-button" target="_blank">Requester</a>
+                    <a href="https://play.google.com/store/apps/details?id=com.ips.provider" class="platform-button" target="_blank">Provider</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="portfolio-item padd-15">
+              <div class="portfolio-item-inner sombra">
+                <div class="portfolio-info">
+                  <h4 class="portfolio-title">Awakened Mind: Mindfulness app</h4>
+                  <p class="portfolio-text">Developed the Awakened Mind app, catering to diverse user needs facilitated mindfulness beginners in establishing sustainable practices and provided guidance for initiation. Empowered intermediate to advanced practitioners to enhance their growth mindset and master mindfulness foundations. Offered practical support, including guided meditation and tips for improved sleep, focus, and mindful communication, with a specialized Neurosync feature for streamlined user experience.</p>
+                  <p class="portfolio-tags">Java, Kotlin, Firebase, Push notification, InApp purchase, Chat</p>
+                  <div class="platform-buttons">
+                    <a href="https://play.google.com/store/apps/details?id=com.awakenedmind.android" class="platform-button" target="_blank">Android</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="portfolio-item padd-15">
+              <div class="portfolio-item-inner sombra">
+                <div class="portfolio-info">
+                  <h4 class="portfolio-title">Home Workout for Men & Women</h4>
+                  <p class="portfolio-text">Developed and launched a comprehensive fitness app targeting both men and women, focusing on core strength building, belly fat loss, and muscle sculpting using proven workout routines. Integrated personalized workout programs suitable for all levels, from beginners to advanced athletes, encompassing various body areas such as arms, legs, chest, and abs. Implemented features including daily reminders, progress tracking, and custom meal plans to enhance user engagement and motivation.</p>
+                  <p class="portfolio-tags">Java, Kotlin, Firebase, Push notification</p>
+                  <div class="platform-buttons">
+                    <a href="https://play.google.com/store/apps/details?id=vi.homeworkout.noequipment.weightloss.fitnesscoach" class="platform-button" target="_blank">Android</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Blog Item 1 -->
+            <div class="portfolio-item padd-15">
+              <div class="portfolio-item-inner sombra">
+                <div class="portfolio-info">
+                  <h4 class="portfolio-title">My Stuff Organizer</h4>
+                  <p class="portfolio-text">Developed and launched of Home Inventory Management app designed to streamline personal asset management. This innovative solution enables users to effortlessly store details of their belongings, track expenses, manage budgets, and organize lending/borrowing activities.Through strategic planning and execution, successfully delivered a user-friendly tool that simplifies home inventory management, enabling users to efficiently track and organize their belongings.</p>
+                  <p class="portfolio-tags">Java, Kotlin, Google Signin, Firebase,InApp purchase, InApp Ads, Onesignal notification</p>
+                  <div class="platform-buttons">
+                    <a href="https://play.google.com/store/apps/details?id=com.ebizzapps.mystufforganizer" class="platform-button" target="_blank">Android</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="portfolio-item padd-15">
+              <div class="portfolio-item-inner sombra">
+                <div class="portfolio-info">
+                  <h4 class="portfolio-title">HomeFit RL</h4>
+                  <p class="portfolio-text">HomeFit RL helps homebuyers discover what you want in a house, and is designed to make things easy if you change your mind later.The app will take you through a series of assistants to help you with your decision-making. Find out what you want in your house and how important each priority is to you, stay focused and organized as you see properties with our integrated checklist, note-taking, and picture capabilities, and compare houses directly to each other! <br>
+                    <br>
+                    <br>
+                  </p>
+                  <p class="portfolio-tags">Java, Firebase, Pushnotification, Messaging</p>
+                  <div class="platform-buttons">
+                    <a href="https://play.google.com/store/apps/details?id=com.renlight.homefit" class="platform-button" target="_blank">Android</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Blog Item 1 -->
+            <div class="portfolio-item padd-15">
+              <div class="portfolio-item-inner sombra">
+                <div class="portfolio-info">
+                  <h4 class="portfolio-title">Writing Star: Text Expander & Auto-complete text</h4>
+                  <p class="portfolio-text">Writing star gives you convenience of typing less but getting long phrases by planning abbreviations of your choice.Automatic expansion means, as soon as a keyword is typed, it will be replaced with its associated Text automatically. You can add the text of your choice to get replaced with short terms.</p>
+                  <p class="portfolio-tags">Kotlin, Google Signin, Firebase,InApp purchase, InApp Ads, Onesignal notification</p>
+                  <div class="platform-buttons">
+                    <a href="https://play.google.com/store/apps/details?id=com.writingstar.autotypingandtextexpansion" class="platform-button" target="_blank">Android</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="portfolio-item padd-15">
+              <div class="portfolio-item-inner sombra">
+                <div class="portfolio-info">
+                  <h4 class="portfolio-title">East Gate Mall</h4>
+                  <p class="portfolio-text">At East Gate Mall there are many events and cool activities that you can do with your friends and family! Download the mobile app and stay up to date with all the happenings at the mall. Beside the shopping info, on the mobile app you will find the Smart Parking feature, which will help you locate your car in the mall parking lot. The feature will locate your car and will guide you to it. <br>
+                    <br>
+                  </p>
+                  <p class="portfolio-tags">Java, Kotlin, Firebase</p>
+                  <div class="platform-buttons">
+                    <a href="https://play.google.com/store/apps/details?id=com.eastgate.seg" class="platform-button" target="_blank">Android</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Blog Item 5 -->
+            <div class="portfolio-item padd-15">
+              <div class="portfolio-item-inner sombra">
+                <div class="portfolio-info">
+                  <h4 class="portfolio-title">Timestamper</h4>
+                  <p class="portfolio-text">Created Timestamper: Keep Activity Log with Time and Note, simplifying activity tracking for enhanced productivity. Users record daily tasks with timestamps, categorize, and add notes, leveraging customizable formats, dark mode, and location tracking for seamless organization and habit development. <br>
+                    <br>
+                    <br>
+                  </p>
+                  <p class="portfolio-tags">Java, InApp Ads, Location, SQlite, Onesignal Notification</p>
+                  <div class="platform-buttons">
+                    <a href="https://play.google.com/store/apps/details?id=com.timestamper.
+activitylogwithdatetimelocation" class="platform-button" target="_blank">Android</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="portfolio-item padd-15">
+              <div class="portfolio-item-inner sombra">
+                <div class="portfolio-info">
+                  <h4 class="portfolio-title">Landscape Pro - Landscapers and gardeners for hire</h4>
+                  <p class="portfolio-text">Alllow Home users to schedule one-time or recurring landscaping service with local landscapers in the app. Our professional services include lawn care, backyard trees trimming, watering flowers and plants in the garden, yard waste removal and more.</p>
+                  <p class="portfolio-tags">Java, Kotlin, Notification, Thirdpart Api</p>
+                  <div class="platform-buttons">
+                    <a href="https://play.google.com/store/apps/details?id=com.app.landscapepro" class="platform-button" target="_blank">Android</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Blog Item 2 -->
+            <div class="portfolio-item padd-15">
+              <div class="portfolio-item-inner sombra">
+                <div class="portfolio-info">
+                  <h4 class="portfolio-title">GPS map camera Lite for photo location</h4>
+                  <p class="portfolio-text">Address, Latitude, Longitude to Altitude And Date Time, You can have every information as a template on your clicked photos as Auto stamp, once you click it from a GPS map camera lite App. <br>
+                    <br>
+                  </p>
+                  <p class="portfolio-tags">Java, Kotlin, Google Location, Firebase,InApp purchase, InApp Ads, Onesignal notification</p>
+                  <div class="platform-buttons">
+                    <a href="https://play.google.com/store/apps/details?id=com.gpsmapcameralite.geotagphotolocation" class="platform-button" target="_blank">Android</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Blog Item 6-->
+            <div class="portfolio-item padd-15">
+              <div class="portfolio-item-inner sombra">
+                <div class="portfolio-info">
+                  <h4 class="portfolio-title">TexFer: Text Transfer Between Mobile Desktop</h4>
+                  <p class="portfolio-text">TexFer is an all-in-one solution free text transfer app to share any important information and text messages, URLs, or any other information that you encounter in a mobile phone or desktop. <br>
+                    <br>
+                  </p>
+                  <p class="portfolio-tags">Kotlin, Html, Css, Desktop Support, Firebase, Notification</p>
+                  <div class="platform-buttons">
+                    <a href="https://play.google.com/store/apps/details?id=com.ebizzapps.te
+xttransferbetweenmobiledesktop" class="platform-button" target="_blank">Android</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Blog Item 4 -->
+            <div class="portfolio-item padd-15">
+              <div class="portfolio-item-inner sombra">
+                <div class="portfolio-info">
+                  <h4 class="portfolio-title">Export Contacts For WhatsApp</h4>
+                  <p class="portfolio-text">Export all the Contacts who are using WhatsApp from any number of Bulk Contacts list (1lac, 2lac, etc..) with Export Contacts for WhatsApp application. This ultimate tool is developed to help businesses with Bulk SMS Advertising and promotion on WhatsApp. <br>
+                    <br>
+                  </p>
+                  <p class="portfolio-tags">Java, Html, Css, Desktop Support, Make CSV,PDF</p>
+                  <div class="platform-buttons">
+                    <a href="https://play.google.com/store/apps/details?id=com.ebizzinfotech.
+whatsappCE" class="platform-button" target="_blank">Android</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Blog Item 2 -->
+            <div class="portfolio-item padd-15">
+              <div class="portfolio-item-inner sombra">
+                <div class="portfolio-info">
+                  <h4 class="portfolio-title">Live Video Call- Chat</h4>
+                  <p class="portfolio-text">SimplyMeet is your go-to live video chat app, connecting you with friendly, like-minded people from around the world via spontaneous video calls. Here at SimplyMeet, we're all about making meaningful connections with strangers and fostering a delightful experience.</p>
+                  <p class="portfolio-tags">Java, Google Location, Firebase, InApp Ads, Agora Video Call</p>
+                  <div class="platform-buttons">
+                    <a href="https://play.google.com/store/apps/details?id=ai.virtualdate.randomvideocall.singlegirl.xgfcall" class="platform-button" target="_blank">Android</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Blog Item 7-->
+            <div class="portfolio-item padd-15">
+              <div class="portfolio-item-inner sombra">
+                <div class="portfolio-info">
+                  <h4 class="portfolio-title">GPS Map Stamp: Add a Geotag on Gallery Photos</h4>
+                  <p class="portfolio-text">Easily add your location data on the gallery photos along with this app. This Geotagging app helps adding custom stamps including latitude, longitude, datetime, address stamp, local temperature, and much more!</p>
+                  <p class="portfolio-tags">Java, Kotlin, Geo Location, Firebase, Notification, InApp Ads</p>
+                  <div class="platform-buttons">
+                    <a href="https://play.google.com/store/apps/details?id=com.photolocation
+stamp.gpsmapgeotagongalleryphotos" class="platform-button" target="_blank">Android</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-      
-</body>
+      </section>
+      <!-- FIM - PORTFOLIO-->
+    </div>
+  </body>
 </html>
